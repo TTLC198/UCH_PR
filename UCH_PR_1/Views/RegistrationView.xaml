@@ -83,6 +83,8 @@
                         Height="Auto"/>
                     <RowDefinition
                         Height="Auto"/>
+                    <RowDefinition
+                        Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
@@ -104,9 +106,79 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Style="{StaticResource InputLabelStyle}"
-                    Text="Id Number:"/>
+                    Text="ФИО:"/>
                 <TextBox
                     Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource InputTextBox}">
+                </TextBox>
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Style="{StaticResource InputLabelStyle}"
+                    Text="Пол:"/>
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Style="{StaticResource InputTextBox}">
+                </TextBox>
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Style="{StaticResource InputLabelStyle}"
+                    Text="Роль:"/>
+                <TextBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Style="{StaticResource InputTextBox}">
+                </TextBox>
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Style="{StaticResource InputLabelStyle}"
+                    Text="Роль:"/>
+                <TextBox
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Style="{StaticResource InputTextBox}">
+                </TextBox>
+                <TextBlock
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Style="{StaticResource InputLabelStyle}"
+                    Text="Email:"/>
+                <TextBox
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Style="{StaticResource InputTextBox}">
+                </TextBox>
+                <TextBlock
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Style="{StaticResource InputLabelStyle}"
+                    Text="Телефон:"/>
+                <TextBox
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Style="{StaticResource InputTextBox}">
+                </TextBox>
+                <TextBlock
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Style="{StaticResource InputLabelStyle}"
+                    Text="Направление:"/>
+                <TextBox
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Style="{StaticResource InputTextBox}">
+                </TextBox>
+                <TextBlock
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Style="{StaticResource InputLabelStyle}"
+                    Text="Мероприятие:"/>
+                <TextBox
+                    Grid.Row="8"
                     Grid.Column="1"
                     Style="{StaticResource InputTextBox}">
                 </TextBox>
