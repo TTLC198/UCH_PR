@@ -19,7 +19,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ViewModels\" />
+      <Page Update="Views\MainWindowView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Images\" />
     </ItemGroup>
 
 </Project>

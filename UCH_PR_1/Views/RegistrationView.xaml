@@ -3,186 +3,178 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:UCH_PR_1.Views"
+        xmlns:viewModels="clr-namespace:UCH_PR_1.ViewModels"
         mc:Ignorable="d"
-        Title="RegistrationView" Height="450" Width="800">
-    <Window.Resources>
-        <Style
-            x:Key="InputGroupPanel"
-            TargetType="{x:Type StackPanel}">
-            <Setter
-                Property="Margin"
-                Value="10"/>
-            <Setter
-                Property="Orientation"
-                Value="Horizontal"/>
-            <Setter
-                Property="DockPanel.Dock"
-                Value="Top"/>
-            <Setter
-                Property="HorizontalAlignment"
-                Value="Right"/>
-        </Style>
-        <Style
-            x:Key="InputLabelStyle"
-            TargetType="{x:Type TextBlock}">
-            <Setter
-                Property="TextAlignment"
-                Value="Right"/>
-            <Setter
-                Property="FontSize"
-                Value="23"/>
-            <Setter
-                Property="Margin"
-                Value="5 0"/>
-            <Setter
-                Property="FontFamily"
-                Value="Calibry"/>
-        </Style>
-        <Style
-            x:Key="InputTextBox"
-            TargetType="{x:Type TextBox}">
-            <Setter
-                Property="HorizontalAlignment"
-                Value="Stretch"/>
-            <Setter
-                Property="MinWidth"
-                Value="160"/>
-            <Setter
-                Property="MaxWidth"
-                Value="240"/>
-        </Style>
-    </Window.Resources>
+        Title="RegistrationView"
+        Height="450"
+        Width="800"
+        d:DataContext="{d:DesignInstance Type=viewModels:RegistrationViewModel}">
     <DockPanel
         Background="{StaticResource MainFirst}"
         LastChildFill="True">
         <TextBlock
-            DockPanel.Dock="Top">
-            <TextBlock
-                Style="{StaticResource HeaderTextBlock}"
-                Text="Регистрация жюри/модератора"/>
-        </TextBlock>
-        <DockPanel>
-            <Grid
-                Margin="5"
-                DockPanel.Dock="Left">
-                <Grid.RowDefinitions>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="Auto"/>
-                    <ColumnDefinition
-                        Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Id Number:"/>
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="ФИО:"/>
-                <TextBox
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Пол:"/>
-                <TextBox
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Роль:"/>
-                <TextBox
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Роль:"/>
-                <TextBox
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Email:"/>
-                <TextBox
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Телефон:"/>
-                <TextBox
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="7"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Направление:"/>
-                <TextBox
-                    Grid.Row="7"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-                <TextBlock
-                    Grid.Row="8"
-                    Grid.Column="0"
-                    Style="{StaticResource InputLabelStyle}"
-                    Text="Мероприятие:"/>
-                <TextBox
-                    Grid.Row="8"
-                    Grid.Column="1"
-                    Style="{StaticResource InputTextBox}">
-                </TextBox>
-            </Grid>
-        </DockPanel>
+            DockPanel.Dock="Top"
+            Style="{StaticResource HeaderTextBlock}"
+            Text="Регистрация жюри/модератора" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+            <DockPanel
+                HorizontalAlignment="Right"
+                Margin="15 0 0 0"
+                LastChildFill="False">
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Id Number:" />
+                    <TextBox
+                        Style="{StaticResource InputTextBox}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="ФИО:" />
+                    <TextBox
+                        Style="{StaticResource InputTextBox}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Пол:" />
+                    <ComboBox
+                        Style="{StaticResource ComboBoxInputStyle}">
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Роль:" />
+                    <ComboBox
+                        Style="{StaticResource ComboBoxInputStyle}">
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Email:" />
+                    <TextBox
+                        Style="{StaticResource InputTextBox}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Телефон:" />
+                    <TextBox
+                        Style="{StaticResource InputTextBox}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Направление:" />
+                    <TextBox
+                        Style="{StaticResource InputTextBox}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Мероприятие:" />
+                    <ComboBox
+                        Style="{StaticResource ComboBoxInputStyle}">
+                    </ComboBox>
+                </StackPanel>
+            </DockPanel>
+            <DockPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Margin="15 0"
+                LastChildFill="False">
+                <Border
+                    DockPanel.Dock="Top"
+                    Margin="0 0 0 25"
+                    HorizontalAlignment="Right"
+                    MinHeight="160"
+                    Width="{Binding ElementName=PasswordInputBox, Path=ActualWidth}"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                    <Grid>
+                        <Image>
+
+                        </Image>
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            TextAlignment="Center">
+                            Фото
+                        </TextBlock>
+                    </Grid>
+                </Border>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Пароль:" />
+                    <TextBox
+                        x:Name="PasswordInputBox"
+                        Style="{StaticResource InputTextBox}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <TextBlock
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Повтор пароля:" />
+                    <TextBox
+                        Style="{StaticResource InputTextBox}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <CheckBox
+                        Style="{StaticResource InputCheckboxStyle}" />
+                    <TextBlock
+                        Width="{Binding ElementName=PasswordInputBox, Path=ActualWidth}"
+                        FontSize="12"
+                        HorizontalAlignment="Left"
+                        TextAlignment="Left"
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Видимый пароль" />
+                </StackPanel>
+                <Grid
+                    DockPanel.Dock="Top"
+                    HorizontalAlignment="Right"
+                    Width="{Binding ElementName=PasswordInputBox, Path=ActualWidth}"
+                    Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Content="Ок"
+                        Style="{StaticResource MenuButtons}" />
+                    <Button
+                        Grid.Column="1"
+                        Content="Отмена"
+                        Style="{StaticResource MenuButtons}" />
+                </Grid>
+            </DockPanel>
+        </Grid>
     </DockPanel>
 </Window>
