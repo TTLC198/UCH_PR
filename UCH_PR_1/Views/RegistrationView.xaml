@@ -4,15 +4,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModels="clr-namespace:UCH_PR_1.ViewModels"
+        xmlns:validation1="clr-namespace:UCH_PR_1.Utils.Validation"
+        xmlns:s="https://github.com/canton7/Stylet"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:RegistrationViewModel}">
     <DockPanel
         Background="{StaticResource MainFirst}"
         LastChildFill="True">
-        <TextBlock
-            DockPanel.Dock="Top"
-            Style="{StaticResource HeaderTextBlock}"
-            Text="Регистрация жюри/модератора" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
@@ -30,7 +29,9 @@
                         Style="{StaticResource InputLabelStyle}"
                         Text="Id Number:" />
                     <TextBox
-                        Style="{StaticResource InputTextBox}">
+                        Style="{StaticResource InputTextBox}"
+                        IsReadOnly="True"
+                        Text="{Binding User.UserId}">
                     </TextBox>
                 </StackPanel>
                 <StackPanel
@@ -40,6 +41,20 @@
                         Text="ФИО:" />
                     <TextBox
                         Style="{StaticResource InputTextBox}">
+                        <materialDesign:ValidationAssist.HorizontalAlignment>
+                            Right
+                        </materialDesign:ValidationAssist.HorizontalAlignment>
+                        <TextBox.Text>
+                            <Binding
+                                Path="User.FullName"
+                                UpdateSourceTrigger="LostFocus"
+                                ValidatesOnExceptions="True">
+                                <Binding.ValidationRules>
+                                    <validation1:NotEmptyValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
                     </TextBox>
                 </StackPanel>
                 <StackPanel
@@ -48,6 +63,9 @@
                         Style="{StaticResource InputLabelStyle}"
                         Text="Пол:" />
                     <ComboBox
+                        HorizontalAlignment="Stretch"
+                        ItemsSource="{Binding Genders}"
+                        SelectedItem="{Binding SelectedGender}"
                         Style="{StaticResource ComboBoxInputStyle}">
                     </ComboBox>
                 </StackPanel>
@@ -57,7 +75,15 @@
                         Style="{StaticResource InputLabelStyle}"
                         Text="Роль:" />
                     <ComboBox
+                        ItemsSource="{Binding Roles}"
+                        SelectedItem="{Binding SelectedRole}"
                         Style="{StaticResource ComboBoxInputStyle}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding Role1}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel
@@ -67,6 +93,22 @@
                         Text="Email:" />
                     <TextBox
                         Style="{StaticResource InputTextBox}">
+                        <materialDesign:ValidationAssist.HorizontalAlignment>
+                            Right
+                        </materialDesign:ValidationAssist.HorizontalAlignment>
+                        <TextBox.Text>
+                            <Binding
+                                Path="User.Email"
+                                UpdateSourceTrigger="LostFocus"
+                                ValidatesOnExceptions="True">
+                                <Binding.ValidationRules>
+                                    <validation1:NotEmptyValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                    <validation1:EmailValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
                     </TextBox>
                 </StackPanel>
                 <StackPanel
@@ -76,6 +118,21 @@
                         Text="Телефон:" />
                     <TextBox
                         Style="{StaticResource InputTextBox}">
+                        <materialDesign:ValidationAssist.HorizontalAlignment>
+                            Right
+                        </materialDesign:ValidationAssist.HorizontalAlignment>
+                        <TextBox.Text>
+                            <Binding
+                                Path="User.FormattedPhoneNumber"
+                                StringFormat="{}{0:(###)###-####}"
+                                UpdateSourceTrigger="LostFocus"
+                                ValidatesOnExceptions="True">
+                                <Binding.ValidationRules>
+                                    <validation1:NotEmptyValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
                     </TextBox>
                 </StackPanel>
                 <StackPanel
@@ -83,9 +140,9 @@
                     <TextBlock
                         Style="{StaticResource InputLabelStyle}"
                         Text="Направление:" />
-                    <TextBox
-                        Style="{StaticResource InputTextBox}">
-                    </TextBox>
+                    <ComboBox
+                        Style="{StaticResource ComboBoxInputStyle}">
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
@@ -111,9 +168,7 @@
                     BorderBrush="Black"
                     BorderThickness="1">
                     <Grid>
-                        <Image>
-
-                        </Image>
+                        <Image/>
                         <TextBlock
                             VerticalAlignment="Center"
                             TextAlignment="Center">
@@ -126,24 +181,63 @@
                     <TextBlock
                         Style="{StaticResource InputLabelStyle}"
                         Text="Пароль:" />
-                    <TextBox
+                    <PasswordBox
                         x:Name="PasswordInputBox"
-                        Style="{StaticResource InputTextBox}">
-                    </TextBox>
+                        Style="{StaticResource InputPasswordBox}"
+                        materialDesign:PasswordBoxAssist.IsPasswordRevealed="{Binding IsPasswordVisible}">
+                        <materialDesign:PasswordBoxAssist.Password>
+                            <Binding
+                                Path="User.PhoneNumber"
+                                UpdateSourceTrigger="LostFocus"
+                                ValidatesOnExceptions="True">
+                                <Binding.ValidationRules>
+                                    <validation1:NotEmptyValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                    <validation1:PasswordValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </materialDesign:PasswordBoxAssist.Password>
+                        <materialDesign:HintAssist.Hint>
+                            <TextBlock
+                                Margin="4, 0"
+                                Text="Password" />
+                        </materialDesign:HintAssist.Hint>
+                    </PasswordBox>
                 </StackPanel>
                 <StackPanel
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
                     <TextBlock
                         Style="{StaticResource InputLabelStyle}"
                         Text="Повтор пароля:" />
-                    <TextBox
-                        Style="{StaticResource InputTextBox}">
-                    </TextBox>
+                    <PasswordBox
+                        Style="{StaticResource InputPasswordBox}"
+                        materialDesign:PasswordBoxAssist.IsPasswordRevealed="{Binding IsPasswordVisible}">
+                        <materialDesign:PasswordBoxAssist.Password>
+                            <Binding
+                                Path="User.PhoneNumber"
+                                UpdateSourceTrigger="LostFocus"
+                                ValidatesOnExceptions="True">
+                                <Binding.ValidationRules>
+                                    <validation1:NotEmptyValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                    <validation1:PasswordValidationRule
+                                        ValidatesOnTargetUpdated="False"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </materialDesign:PasswordBoxAssist.Password>
+                        <materialDesign:HintAssist.Hint>
+                            <TextBlock
+                                Margin="4, 0"
+                                Text="Re-enter password" />
+                        </materialDesign:HintAssist.Hint>
+                    </PasswordBox>
                 </StackPanel>
                 <StackPanel
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
                     <CheckBox
-                        Style="{StaticResource InputCheckboxStyle}" />
+                        Style="{StaticResource InputCheckboxStyle}" 
+                        IsChecked="{Binding IsPasswordVisible, Mode=TwoWay}"/>
                     <TextBlock
                         Width="{Binding ElementName=PasswordInputBox, Path=ActualWidth}"
                         FontSize="12"

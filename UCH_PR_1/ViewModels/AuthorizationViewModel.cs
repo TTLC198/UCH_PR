@@ -17,7 +17,7 @@ public class AuthorizationViewModel : DialogScreen<User>, INotifyPropertyChanged
     private readonly DialogManager _dialogManager;
     private readonly IViewModelFactory _viewModelFactory;
 
-    public UserLoginViewModel UserLoginViewModel { get; set; } = new();
+    public UserLoginViewModel UserLoginViewModel { get; set; } = new UserLoginViewModel();
 
     private string _captchaText;
 

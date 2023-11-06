@@ -96,6 +96,23 @@
     </Style>
     
     <Style
+        x:Key="InputPasswordBox"
+        TargetType="{x:Type PasswordBox}">
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Stretch"/>
+        <Setter
+            Property="MinWidth"
+            Value="160"/>
+        <Setter
+            Property="MaxWidth"
+            Value="240"/>
+        <Setter
+            Property="Background"
+            Value="{StaticResource SecondaryFirst}"/>
+    </Style>
+    
+    <Style
         x:Key="WelcomeTextBlock"
         TargetType="{x:Type TextBlock}">
         <Setter
@@ -347,7 +364,7 @@
 
     <!--TextBox Template-->
     <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
-        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" />
+        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
     </ControlTemplate>
 
     <!--combobox-->
@@ -374,13 +391,15 @@
                                           Content="{TemplateBinding SelectionBoxItem}"
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                          Margin="3,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                          Margin="3,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                          MinWidth="130"/>
                         <TextBox OverridesDefaultStyle="True" SelectionBrush="Gray" CaretBrush="Black"
                                  Margin="0,0,30,0" TextWrapping="NoWrap" x:Name="PART_EditableTextBox"
                                  FontFamily="Segoe UI Dark" Foreground="Black" Style="{x:Null}"
                                  Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left"
                                  Focusable="True" VerticalAlignment="Center" FontSize="15" Visibility="Hidden"
-                                 IsReadOnly="{TemplateBinding IsReadOnly}" />
+                                 IsReadOnly="{TemplateBinding IsReadOnly}" 
+                                 MinWidth="130"/>
                         <Popup Name="Popup" Grid.ColumnSpan="2" Placement="Bottom"
                                IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False"
                                PopupAnimation="Slide">

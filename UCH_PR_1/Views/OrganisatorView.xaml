@@ -1,13 +1,13 @@
 ﻿<UserControl x:Class="UCH_PR_1.Views.OrganisatorView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:UCH_PR_1.Views"
-        xmlns:viewModels="clr-namespace:UCH_PR_1.ViewModels"
-        xmlns:s="https://github.com/canton7/Stylet"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type=viewModels:OrganisatorViewModel}">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:UCH_PR_1.Views"
+             xmlns:viewModels="clr-namespace:UCH_PR_1.ViewModels"
+             xmlns:s="https://github.com/canton7/Stylet"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewModels:OrganisatorViewModel}">
     <DockPanel
         Background="{StaticResource MainFirst}"
         LastChildFill="True"
@@ -17,60 +17,65 @@
             BorderBrush="Black"
             BorderThickness="0 2 0 0">
         </Border>
-        <DockPanel
-            DockPanel.Dock="Left"
-            HorizontalAlignment="Left"
-            LastChildFill="False"
-            Margin="35 15">
-            <Border
-                DockPanel.Dock="Top"
-                Margin="0 0 0 25"
-                BorderBrush="Black"
-                BorderThickness="1">
-                <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+            <DockPanel
+                Grid.Column="0"
+                DockPanel.Dock="Left"
+                HorizontalAlignment="Left"
+                LastChildFill="False"
+                Margin="35 15">
+                <Border
+                    DockPanel.Dock="Top"
+                    Margin="0 0 0 25"
+                    BorderBrush="Black"
+                    BorderThickness="1">
                     <Image
                         Stretch="Uniform"
                         MinWidth="150"
                         MinHeight="220"
-                        Source="{Binding ImageResource}"/>
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        TextAlignment="Center">
-                        Фото
-                    </TextBlock>
-                </Grid>
-            </Border>
-            <Button
-                MinWidth="150"
-                Style="{StaticResource ProfileButtons}"
-                Content="Мой профиль"/>
-        </DockPanel>
-        <DockPanel
-            LastChildFill="False">
-            <TextBlock
-                Style="{StaticResource WelcomeTextBlock}">
-                <Run
-                    Text="{Binding TimeString}"/>
-            </TextBlock>
-            <TextBlock
-                Style="{StaticResource WelcomeTextBlock}">
-                <Run
-                    Text="{Binding GenderWelcomeMessage}"/>
-                <Run
-                    Text="{Binding CurrentUser.FullName}"/>
-            </TextBlock>
-            <Button
-                Style="{StaticResource MainMenuButtons}"
-                Content="Мероприятия">
-            </Button>
-            <Button
-                Style="{StaticResource MainMenuButtons}"
-                Content="Участники">
-            </Button>
-            <Button
-                Style="{StaticResource MainMenuButtons}"
-                Content="Жюри">
-            </Button>
-        </DockPanel>
+                        Source="{Binding ImageResource}" />
+                </Border>
+                <Button
+                    MinWidth="150"
+                    Style="{StaticResource ProfileButtons}"
+                    Content="Мой профиль" />
+            </DockPanel>
+            <DockPanel
+                Grid.Column="1"
+                LastChildFill="False">
+                <TextBlock
+                    Style="{StaticResource WelcomeTextBlock}">
+                    <Run
+                        Text="{Binding TimeString}" />
+                </TextBlock>
+                <TextBlock
+                    Style="{StaticResource WelcomeTextBlock}">
+                    <Run
+                        Text="{Binding GenderWelcomeMessage}" />
+                    <Run
+                        Text="{Binding CurrentUser.FullName}" />
+                </TextBlock>
+                <Button
+                    Style="{StaticResource MainMenuButtons}"
+                    Content="Мероприятия">
+                </Button>
+                <Button
+                    Style="{StaticResource MainMenuButtons}"
+                    Content="Участники">
+                </Button>
+                <Button
+                    Style="{StaticResource MainMenuButtons}"
+                    Content="Жюри"
+                    s:View.ActionTarget="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Command="{s:Action SetRegistrationTab}">
+                </Button>
+            </DockPanel>
+        </Grid>
     </DockPanel>
 </UserControl>

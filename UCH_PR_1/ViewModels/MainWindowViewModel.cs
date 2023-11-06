@@ -87,6 +87,13 @@ public class MainWindowViewModel : INotifyPropertyChanged
         LoginButtonText = "Авторизация";
     }
 
+    public async void SetRegistrationTab()
+    {
+        ActiveTab = Tabs.FirstOrDefault(t => t.ViewType == ViewType.RegistrationView);
+        ActiveTab?.OnViewFullyLoaded();
+        LoginButtonText = "Назад";
+    }
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

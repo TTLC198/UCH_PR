@@ -9,6 +9,8 @@
         xmlns:wpf="clr-namespace:EasyCaptcha.Wpf;assembly=EasyCaptcha.Wpf"
         xmlns:utils="clr-namespace:UCH_PR_1.Utils"
         xmlns:wpf1="clr-namespace:EasyCaptcha.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:validation="clr-namespace:UCH_PR_1.Utils.Validation"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:AuthorizationViewModel}"
         Loaded="{s:Action OnViewFullyLoaded}">
@@ -40,6 +42,10 @@
                 <TextBlock
                     Style="{StaticResource InputLabelStyle}"
                     Text="Password:"/>
+                <!--<PasswordBox
+                    Style="{StaticResource InputPasswordBox}"
+                    materialDesign:PasswordBoxAssist.Password="{Binding UserLoginViewModel.Password, Mode=TwoWay}">
+                </PasswordBox>-->
                 <TextBox
                     Style="{StaticResource InputTextBox}"
                     Text="{Binding UserLoginViewModel.Password}">
