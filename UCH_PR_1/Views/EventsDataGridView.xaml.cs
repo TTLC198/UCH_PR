@@ -2,9 +2,9 @@
 
 namespace UCH_PR_1.Views;
 
-public partial class RegistrationView : UserControl
+public partial class EventsDataGridView : UserControl
 {
-    public RegistrationView()
+    public EventsDataGridView()
     {
         InitializeComponent();
     }

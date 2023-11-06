@@ -13,24 +13,13 @@ public class EventViewModel : INotifyPropertyChanged
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } = string.Empty;
 
     public DateTime StartDate { get; set; }
     
-    private ImageSource _imageResource =
-        new BitmapImage(new Uri($@"pack://application:,,,/UCH_PR_1;component/Resources/Images/{Id}.bmp", UriKind.Absolute));
+    public ImageSource ImageResource => new BitmapImage(new Uri($@"pack://application:,,,/UCH_PR_1;component/Resources/Images/EventImages/{Id}.png", UriKind.Absolute));
 
-    public ImageSource imageResource
-    {
-        get => imageResource;
-        set
-        {
-            _imageResource = value;
-            OnPropertyChanged();
-        }
-    }
-    
-    public Course Course { get; set; }
+    public string CourseName { get; set; } = string.Empty;
     
     public event NotifyCollectionChangedEventHandler? CollectionChanged;
     public event PropertyChangedEventHandler? PropertyChanged;

@@ -2,9 +2,9 @@
 
 namespace UCH_PR_1.Views;
 
-public partial class RegistrationView : UserControl
+public partial class ModeratorView : UserControl
 {
-    public RegistrationView()
+    public ModeratorView()
     {
         InitializeComponent();
     }

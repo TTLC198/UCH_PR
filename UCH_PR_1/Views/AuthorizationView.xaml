@@ -1,18 +1,22 @@
-﻿<Window x:Class="UCH_PR_1.Views.AuthorizationView"
+﻿<UserControl x:Class="UCH_PR_1.Views.AuthorizationView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:UCH_PR_1.Views"
         xmlns:viewModels="clr-namespace:UCH_PR_1.ViewModels"
+        xmlns:s="https://github.com/canton7/Stylet"
+        xmlns:wpf="clr-namespace:EasyCaptcha.Wpf;assembly=EasyCaptcha.Wpf"
+        xmlns:utils="clr-namespace:UCH_PR_1.Utils"
+        xmlns:wpf1="clr-namespace:EasyCaptcha.Wpf"
         mc:Ignorable="d"
-        Title="AuthorizationView" 
-        Height="350" 
-        Width="400"
-        d:DataContext="{d:DesignInstance Type=viewModels:AuthorizationViewModel}">
+        d:DataContext="{d:DesignInstance Type=viewModels:AuthorizationViewModel}"
+        Loaded="{s:Action OnViewFullyLoaded}">
     <DockPanel
         Background="{StaticResource MainFirst}"
-        LastChildFill="False">
+        LastChildFill="False"
+        IsEnabled="{Binding CanExecute}"
+        Loaded="FrameworkElement_OnLoaded">
         <TextBlock
             DockPanel.Dock="Top"
             Style="{StaticResource HeaderTextBlock}"
@@ -26,7 +30,8 @@
                     Style="{StaticResource InputLabelStyle}"
                     Text="Id Number:"/>
                 <TextBox
-                    Style="{StaticResource InputTextBox}">
+                    Style="{StaticResource InputTextBox}"
+                    Text="{Binding UserLoginViewModel.UserId}">
                 </TextBox>
             </StackPanel>
             <StackPanel
@@ -36,7 +41,8 @@
                     Style="{StaticResource InputLabelStyle}"
                     Text="Password:"/>
                 <TextBox
-                    Style="{StaticResource InputTextBox}">
+                    Style="{StaticResource InputTextBox}"
+                    Text="{Binding UserLoginViewModel.Password}">
                 </TextBox>
             </StackPanel>
             <StackPanel
@@ -44,8 +50,23 @@
                 DockPanel.Dock="Top">
                 <Border
                     HorizontalAlignment="Stretch">
-                    <Image
-                        />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*"/>
+                            <ColumnDefinition
+                                Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <wpf1:Captcha 
+                            HorizontalAlignment="Stretch"
+                            x:Name="MyCaptcha"
+                            CaptchaText="{Binding CaptchaText, Mode=TwoWay}"/>
+                        <Button
+                            Grid.Column="1"
+                            Content="Обновить"
+                            Style="{StaticResource MenuButtons}"
+                            Click="RefreshCaptcha_OnClick"/>
+                    </Grid>
                 </Border>
                 <StackPanel
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
@@ -53,7 +74,8 @@
                         Style="{StaticResource InputLabelStyle}"
                         Text="Captcha:"/>
                     <TextBox
-                        Style="{StaticResource InputTextBox}">
+                        Style="{StaticResource InputTextBox}"
+                        Text="{Binding UserLoginViewModel.Captcha}">
                     </TextBox>
                 </StackPanel>
             </StackPanel>
@@ -70,12 +92,14 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Content="Ок"
-                    Style="{StaticResource MenuButtons}"/>
+                    Style="{StaticResource MenuButtons}"
+                    Command="{s:Action Login}"/>
                 <Button
                     Grid.Column="1"
                     Content="Назад"
-                    Style="{StaticResource MenuButtons}"/>
+                    Style="{StaticResource MenuButtons}"
+                    Command="{s:Action CloseView}"/>
             </Grid>
         </DockPanel>
     </DockPanel>
-</Window>
+</UserControl>

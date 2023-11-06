@@ -1,13 +1,10 @@
-﻿<Window x:Class="UCH_PR_1.Views.RegistrationView"
+﻿<UserControl x:Class="UCH_PR_1.Views.RegistrationView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModels="clr-namespace:UCH_PR_1.ViewModels"
         mc:Ignorable="d"
-        Title="RegistrationView"
-        Height="450"
-        Width="800"
         d:DataContext="{d:DesignInstance Type=viewModels:RegistrationViewModel}">
     <DockPanel
         Background="{StaticResource MainFirst}"
@@ -177,4 +174,4 @@
             </DockPanel>
         </Grid>
     </DockPanel>
-</Window>
+</UserControl>

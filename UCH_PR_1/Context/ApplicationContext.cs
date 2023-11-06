@@ -6,13 +6,13 @@ using Action = UCH_PR_1.Entities.Action;
 
 namespace UCH_PR_1.Context;
 
-public partial class MyDbContext : DbContext
+public partial class ApplicationContext : DbContext
 {
-    public MyDbContext()
+    public ApplicationContext()
     {
     }
 
-    public MyDbContext(DbContextOptions<MyDbContext> options)
+    public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
     {
     }
@@ -43,7 +43,7 @@ public partial class MyDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Integrated Security=True;Data Source=TTLC198LT;Database=UCH_PR_1;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=91.245.37.31,1433;User ID=sa;Initial Catalog=UCH_PR_1;Password=mr_Vadik123;TrustServerCertificate=True;Trusted_Connection=False;Integrated Security=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
