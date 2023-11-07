@@ -16,20 +16,30 @@
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Image
-                            Width="70"
-                            Height="70"
+                            Width="100"
+                            Height="100"
+                            Stretch="UniformToFill"
                             Source="{Binding Path=ImageResource}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+                Header="Название мероприятия"
+                IsReadOnly="True"
+                MaxWidth="180">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            MaxWidth="180"
+                            TextWrapping="WrapWithOverflow"
+                            Text="{Binding Path=Name}"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             <DataGridTextColumn
                 IsReadOnly="True"
-                Width="100"
-                Header="Название мероприятия"
-                Binding="{Binding Path=Name}" />
-            <DataGridTextColumn
-                IsReadOnly="True"
                 Width="SizeToCells"
+                MinWidth="210"
                 Header="Направление мероприятия"
                 Binding="{Binding Path=CourseName}" />
             <DataGridTextColumn

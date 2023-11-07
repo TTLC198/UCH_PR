@@ -7,6 +7,8 @@
         xmlns:s="https://github.com/canton7/Stylet"
         xmlns:wpf1="clr-namespace:EasyCaptcha.Wpf"
         mc:Ignorable="d"
+        d:DesignWidth="350"
+        Width="350"
         d:DataContext="{d:DesignInstance Type=viewModels:AuthorizationViewModel}"
         Loaded="{s:Action OnViewFullyLoaded}">
     <DockPanel

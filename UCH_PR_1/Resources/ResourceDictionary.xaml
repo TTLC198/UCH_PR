@@ -144,7 +144,7 @@
     <Style
         x:Key="InputTextBox"
         TargetType="{x:Type TextBox}"
-        BasedOn="{StaticResource MaterialDesignTextBox}">
+        BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
         <Setter
             Property="materialDesign:HintAssist.IsFloating"
             Value="False"/>
@@ -180,7 +180,7 @@
     <Style
         x:Key="InputComboBox"
         TargetType="{x:Type ComboBox}"
-        BasedOn="{StaticResource MaterialDesignFilledComboBox}">
+        BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
         <Setter
             Property="materialDesign:HintAssist.IsFloating"
             Value="False"/>
@@ -219,7 +219,7 @@
     <Style
         x:Key="InputPasswordBox"
         TargetType="{x:Type PasswordBox}"
-        BasedOn="{StaticResource MaterialDesignFilledPasswordBox}">
+        BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}">
         <Setter
             Property="HorizontalAlignment"
             Value="Stretch"/>
@@ -231,7 +231,7 @@
             Value="False"/>
         <Setter
             Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment"
-            Value="Center"/>
+            Value="Left"/>
         <Setter
             Property="MinWidth"
             Value="160"/>

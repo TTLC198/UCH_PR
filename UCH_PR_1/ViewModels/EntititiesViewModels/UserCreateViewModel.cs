@@ -36,6 +36,16 @@ public class UserCreateViewModel : User, INotifyPropertyChanged
     
     public string ConfirmPassword { get; set; }
 
+    public int Id
+    {
+        get => UserId;
+        set
+        {
+            UserId = value;
+            OnPropertyChanged();
+        }
+    }
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

@@ -173,7 +173,7 @@ public class RegistrationViewModel : TabViewModelBase
         var lastId = await _applicationContext
             .Users.MaxAsync(u => u.UserId);
 
-        User.UserId = lastId + 1;
+        User.Id = lastId + 1;
     }
 
     public async void SaveUser()
@@ -190,11 +190,15 @@ public class RegistrationViewModel : TabViewModelBase
             await _dialogManager.ShowDialogAsync(messageBoxDialog);
             return;
         }
+        
         User.Genders.Add(SelectedGender);
         User.Roles.Add(SelectedRole);
         User.Courses.Add(SelectedCourse);
         if (IsAttachToEvent)
             User.Events.Add(SelectedEvent);
+
+        User.UserId = User.Id;
+        
         await _applicationContext.AddAsync(User);
         await _applicationContext.SaveChangesAsync();
         CurrentUser = User;

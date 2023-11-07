@@ -7,7 +7,11 @@
         xmlns:s="https://github.com/canton7/Stylet"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="900"
+        Title=""
+        MinHeight="400"
+        MinWidth="750"
+        Height="550" 
+        Width="900"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}">
     <materialDesign:DialogHost
         CloseOnClickAway="False"

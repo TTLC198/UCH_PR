@@ -32,7 +32,7 @@
                     <TextBox
                         Style="{StaticResource InputTextBox}"
                         IsReadOnly="True"
-                        Text="{Binding User.UserId}">
+                        Text="{Binding User.Id}">
                     </TextBox>
                 </StackPanel>
                 <StackPanel
