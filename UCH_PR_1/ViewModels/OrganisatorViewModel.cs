@@ -54,6 +54,7 @@ public class OrganisatorViewModel : TabViewModelBase
     public override void OnViewFullyLoaded()
     {
         SetGenderWelcomeMessage();
+        SetTimeWelcomeMessage();
         SetUserImage();
     }
 

@@ -33,6 +33,8 @@ public class UserCreateViewModel : User, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+    
+    public string ConfirmPassword { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

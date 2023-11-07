@@ -7,6 +7,7 @@
         xmlns:validation1="clr-namespace:UCH_PR_1.Utils.Validation"
         xmlns:s="https://github.com/canton7/Stylet"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:RegistrationViewModel}">
     <DockPanel
@@ -42,7 +43,7 @@
                     <TextBox
                         Style="{StaticResource InputTextBox}">
                         <materialDesign:ValidationAssist.HorizontalAlignment>
-                            Right
+                            Center
                         </materialDesign:ValidationAssist.HorizontalAlignment>
                         <TextBox.Text>
                             <Binding
@@ -63,10 +64,16 @@
                         Style="{StaticResource InputLabelStyle}"
                         Text="Пол:" />
                     <ComboBox
-                        HorizontalAlignment="Stretch"
                         ItemsSource="{Binding Genders}"
                         SelectedItem="{Binding SelectedGender}"
-                        Style="{StaticResource ComboBoxInputStyle}">
+                        Style="{StaticResource InputComboBox}"
+                        MinWidth="160">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding Gender1}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel
@@ -77,7 +84,8 @@
                     <ComboBox
                         ItemsSource="{Binding Roles}"
                         SelectedItem="{Binding SelectedRole}"
-                        Style="{StaticResource ComboBoxInputStyle}">
+                        Style="{StaticResource InputComboBox}"
+                        MinWidth="160">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock
@@ -115,8 +123,10 @@
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
                     <TextBlock
                         Style="{StaticResource InputLabelStyle}"
-                        Text="Телефон:" />
-                    <TextBox
+                        Text="Телефон:" 
+                        />
+                    <xctk:MaskedTextBox
+                        Mask="+7(000)-000-00-00"
                         Style="{StaticResource InputTextBox}">
                         <materialDesign:ValidationAssist.HorizontalAlignment>
                             Right
@@ -133,7 +143,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                    </xctk:MaskedTextBox>
                 </StackPanel>
                 <StackPanel
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
@@ -141,16 +151,49 @@
                         Style="{StaticResource InputLabelStyle}"
                         Text="Направление:" />
                     <ComboBox
-                        Style="{StaticResource ComboBoxInputStyle}">
+                        IsEditable="True"
+                        Style="{StaticResource InputComboBox}"
+                        ItemsSource="{Binding Courses}"
+                        SelectedItem="{Binding SelectedCourse}"
+                        MinWidth="160">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding Course1}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel
+                    Style="{StaticResource InputGroupRightAlignmentPanel}">
+                    <CheckBox
+                        Style="{StaticResource InputCheckboxStyle}" 
+                        IsChecked="{Binding IsAttachToEvent}"/>
+                    <TextBlock
+                        Width="{Binding ElementName=PasswordInputBox, Path=ActualWidth}"
+                        FontSize="12"
+                        HorizontalAlignment="Left"
+                        TextAlignment="Left"
+                        Style="{StaticResource InputLabelStyle}"
+                        Text="Прикрепить к мероприятию" />
+                </StackPanel>
+                <StackPanel
+                    IsEnabled="{Binding IsAttachToEvent}"
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
                     <TextBlock
                         Style="{StaticResource InputLabelStyle}"
                         Text="Мероприятие:" />
                     <ComboBox
-                        Style="{StaticResource ComboBoxInputStyle}">
+                        Style="{StaticResource InputComboBox}"
+                        ItemsSource="{Binding Events}"
+                        SelectedItem="{Binding SelectedEvent}"
+                        MinWidth="160">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
                 </StackPanel>
             </DockPanel>
@@ -184,10 +227,11 @@
                     <PasswordBox
                         x:Name="PasswordInputBox"
                         Style="{StaticResource InputPasswordBox}"
-                        materialDesign:PasswordBoxAssist.IsPasswordRevealed="{Binding IsPasswordVisible}">
+                        materialDesign:PasswordBoxAssist.IsPasswordRevealed="{Binding IsPasswordVisible}"
+                        materialDesign:HintAssist.Hint="Password">
                         <materialDesign:PasswordBoxAssist.Password>
                             <Binding
-                                Path="User.PhoneNumber"
+                                Path="User.Password"
                                 UpdateSourceTrigger="LostFocus"
                                 ValidatesOnExceptions="True">
                                 <Binding.ValidationRules>
@@ -198,11 +242,6 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </materialDesign:PasswordBoxAssist.Password>
-                        <materialDesign:HintAssist.Hint>
-                            <TextBlock
-                                Margin="4, 0"
-                                Text="Password" />
-                        </materialDesign:HintAssist.Hint>
                     </PasswordBox>
                 </StackPanel>
                 <StackPanel
@@ -212,10 +251,11 @@
                         Text="Повтор пароля:" />
                     <PasswordBox
                         Style="{StaticResource InputPasswordBox}"
-                        materialDesign:PasswordBoxAssist.IsPasswordRevealed="{Binding IsPasswordVisible}">
+                        materialDesign:PasswordBoxAssist.IsPasswordRevealed="{Binding IsPasswordVisible}"
+                        materialDesign:HintAssist.Hint="Re-enter password">
                         <materialDesign:PasswordBoxAssist.Password>
                             <Binding
-                                Path="User.PhoneNumber"
+                                Path="User.ConfirmPassword"
                                 UpdateSourceTrigger="LostFocus"
                                 ValidatesOnExceptions="True">
                                 <Binding.ValidationRules>
@@ -226,18 +266,13 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </materialDesign:PasswordBoxAssist.Password>
-                        <materialDesign:HintAssist.Hint>
-                            <TextBlock
-                                Margin="4, 0"
-                                Text="Re-enter password" />
-                        </materialDesign:HintAssist.Hint>
                     </PasswordBox>
                 </StackPanel>
                 <StackPanel
                     Style="{StaticResource InputGroupRightAlignmentPanel}">
                     <CheckBox
                         Style="{StaticResource InputCheckboxStyle}" 
-                        IsChecked="{Binding IsPasswordVisible, Mode=TwoWay}"/>
+                        IsChecked="{Binding IsPasswordVisible}"/>
                     <TextBlock
                         Width="{Binding ElementName=PasswordInputBox, Path=ActualWidth}"
                         FontSize="12"
@@ -259,11 +294,14 @@
                     </Grid.ColumnDefinitions>
                     <Button
                         Content="Ок"
-                        Style="{StaticResource MenuButtons}" />
+                        Style="{StaticResource MenuButtons}" 
+                        Command="{s:Action SaveUser}"/>
                     <Button
                         Grid.Column="1"
                         Content="Отмена"
-                        Style="{StaticResource MenuButtons}" />
+                        Style="{StaticResource MenuButtons}" 
+                        s:View.ActionTarget="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                        Command="{s:Action SetTabByUser}"/>
                 </Grid>
             </DockPanel>
         </Grid>

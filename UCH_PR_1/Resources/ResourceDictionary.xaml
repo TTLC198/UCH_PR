@@ -1,5 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.dark.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
     <SolidColorBrush
         x:Key="MainFirst">
         <SolidColorBrush.Color>
@@ -31,6 +37,63 @@
                 A="255" R="255" G="252" B="214" />
         </SolidColorBrush.Color>
     </SolidColorBrush>
+    
+    <SolidColorBrush
+        x:Key="PrimaryHueLightBrush">
+        <SolidColorBrush.Color>
+            <Color
+                A="255" R="181" G="213" B="202" />
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+
+    <SolidColorBrush
+        x:Key="PrimaryHueMidBrush">
+        <SolidColorBrush.Color>
+            <Color
+                A="255" R="224" G="169" B="175" />
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+
+    <SolidColorBrush
+        x:Key="PrimaryHueDarkBrush">
+        <SolidColorBrush.Color>
+            <Color
+                A="255" R="209" G="238" B="252" />
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+
+    <SolidColorBrush
+        x:Key="SecondaryHueMidBrush">
+        <SolidColorBrush.Color>
+            <Color
+                A="255" R="255" G="252" B="214" />
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    
+    <SolidColorBrush
+        x:Key="PrimaryHueLightForegroundBrush"
+        Color="Black"/>
+    
+    
+    <SolidColorBrush
+        x:Key="PrimaryHueMidForegroundBrush"
+        Color="Black"/>
+    
+    
+    <!--<SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{DynamicResource Mainf}" />
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{DynamicResource PrimaryColor}" />
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{DynamicResource SecondaryColor}" />
+    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="{DynamicResource TertiaryColor}" />
+    <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="SearchBarColorBrush" Color="{DynamicResource SearchBarColor}" />
+    <SolidColorBrush x:Key="UiElementsColorBrush" Color="{DynamicResource BackgroundColor}" />-->
+    
+    <Style TargetType="{x:Type materialDesign:SmartHint}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
 
     <Style
         x:Key="InputGroupPanel"
@@ -80,7 +143,14 @@
     </Style>
     <Style
         x:Key="InputTextBox"
-        TargetType="{x:Type TextBox}">
+        TargetType="{x:Type TextBox}"
+        BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter
+            Property="materialDesign:HintAssist.IsFloating"
+            Value="False"/>
+        <Setter
+            Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment"
+            Value="Center"/>
         <Setter
             Property="HorizontalAlignment"
             Value="Stretch"/>
@@ -91,16 +161,77 @@
             Property="MaxWidth"
             Value="240"/>
         <Setter
+            Property="MaxHeight"
+            Value="28"/>
+        <Setter
             Property="Background"
             Value="{StaticResource SecondaryFirst}"/>
+        <Setter
+            Property="BorderThickness"
+            Value="1"/>
+        <Setter
+            Property="BorderBrush"
+            Value="Black"/>
+        <Setter
+            Property="Foreground"
+            Value="Black"/>
+    </Style>
+    
+    <Style
+        x:Key="InputComboBox"
+        TargetType="{x:Type ComboBox}"
+        BasedOn="{StaticResource MaterialDesignFilledComboBox}">
+        <Setter
+            Property="materialDesign:HintAssist.IsFloating"
+            Value="False"/>
+        <Setter
+            Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment"
+            Value="Center"/>
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Stretch"/>
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center"/>
+        <Setter
+            Property="MinWidth"
+            Value="160"/>
+        <Setter
+            Property="MaxWidth"
+            Value="240"/>
+        <Setter
+            Property="MaxHeight"
+            Value="28"/>
+        <Setter
+            Property="Background"
+            Value="{StaticResource SecondaryFirst}"/>
+        <Setter
+            Property="BorderThickness"
+            Value="1"/>
+        <Setter
+            Property="BorderBrush"
+            Value="Black"/>
+        <Setter
+            Property="Border.CornerRadius"
+            Value="0"/>
     </Style>
     
     <Style
         x:Key="InputPasswordBox"
-        TargetType="{x:Type PasswordBox}">
+        TargetType="{x:Type PasswordBox}"
+        BasedOn="{StaticResource MaterialDesignFilledPasswordBox}">
         <Setter
             Property="HorizontalAlignment"
             Value="Stretch"/>
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center"/>
+        <Setter
+            Property="materialDesign:HintAssist.IsFloating"
+            Value="False"/>
+        <Setter
+            Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment"
+            Value="Center"/>
         <Setter
             Property="MinWidth"
             Value="160"/>
@@ -108,8 +239,17 @@
             Property="MaxWidth"
             Value="240"/>
         <Setter
+            Property="MaxHeight"
+            Value="28"/>
+        <Setter
             Property="Background"
             Value="{StaticResource SecondaryFirst}"/>
+        <Setter
+            Property="BorderThickness"
+            Value="1"/>
+        <Setter
+            Property="BorderBrush"
+            Value="Black"/>
     </Style>
     
     <Style
@@ -310,17 +450,21 @@
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
         <Grid x:Name="gd">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
             <Border
                 x:Name="Border"
+                MinWidth="160"
                 SnapsToDevicePixels="True"
                 Grid.ColumnSpan="2"
-                Background="Transparent"
-                BorderBrush="Black" BorderThickness="1" />
+                Background="{StaticResource SecondaryFirst}"
+                BorderBrush="Black"
+                BorderThickness="1" 
+                HorizontalAlignment="Stretch"/>
             <Border
                 x:Name="Boredr1"
+                MinWidth="160"
                 SnapsToDevicePixels="True"
                 Grid.Column="1"
                 Margin="1"
@@ -364,11 +508,12 @@
 
     <!--TextBox Template-->
     <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
-        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+        <ScrollViewer x:Name="PART_ContentHost" Focusable="False"/>
     </ControlTemplate>
 
     <!--combobox-->
-    <Style x:Key="ComboBoxInputStyle" TargetType="ComboBox">
+    <Style x:Key="ComboBoxInputStyle" TargetType="ComboBox"
+           BasedOn="{StaticResource MaterialDesignComboBox}">
         <Setter
             Property="MinWidth"
             Value="160"/>
@@ -376,43 +521,60 @@
             Property="MaxWidth"
             Value="240"/>
         <Setter
+            Property="MaxHeight"
+            Value="28"/>
+        <Setter
+            Property="BorderThickness"
+            Value="1"/>
+        <Setter
+            Property="BorderBrush"
+            Value="Black"/>
+        <Setter
+            Property="Border.CornerRadius"
+            Value="0"/>
+        <Setter
             Property="Background"
             Value="{StaticResource SecondaryFirst}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
-                    <Grid>
+                    <Grid
+                        MinWidth="160"
+                        HorizontalAlignment="Stretch">
                         <ToggleButton Name="ToggleButton" Foreground="Black"
                                       Template="{StaticResource ComboBoxToggleButton}" Focusable="false"
                                       IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
-                                      ClickMode="Press">
+                                      ClickMode="Press"
+                                      MinWidth="160">
                         </ToggleButton>
                         <ContentPresenter Name="ContentSite" IsHitTestVisible="False"
                                           Content="{TemplateBinding SelectionBoxItem}"
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                           Margin="3,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                                          MinWidth="130"/>
+                                          MinWidth="160"/>
                         <TextBox OverridesDefaultStyle="True" SelectionBrush="Gray" CaretBrush="Black"
                                  Margin="0,0,30,0" TextWrapping="NoWrap" x:Name="PART_EditableTextBox"
                                  FontFamily="Segoe UI Dark" Foreground="Black" Style="{x:Null}"
                                  Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left"
                                  Focusable="True" VerticalAlignment="Center" FontSize="15" Visibility="Hidden"
                                  IsReadOnly="{TemplateBinding IsReadOnly}" 
-                                 MinWidth="130"/>
+                                 MinWidth="160"
+                                 Background="Transparent"/>
                         <Popup Name="Popup" Grid.ColumnSpan="2" Placement="Bottom"
-                               IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False"
+                               IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="False" Focusable="False"
                                PopupAnimation="Slide">
                             <Grid Name="DropDown" SnapsToDevicePixels="True" MaxWidth="{TemplateBinding ActualWidth}"
                                   MinWidth="{TemplateBinding ActualWidth}"
-                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                  Background="{StaticResource SecondaryFirst}">
                                 <Border Grid.ColumnSpan="2" Grid.RowSpan="2" x:Name="DropDownBorder"
-                                        SnapsToDevicePixels="True" Background="Transparent"
+                                        SnapsToDevicePixels="True"
                                         MaxWidth="{TemplateBinding ActualWidth}" BorderThickness="1"
                                         BorderBrush="Black" />
                                 <ScrollViewer Grid.ColumnSpan="2" ScrollViewer.CanContentScroll="False" Grid.Row="1"
                                               SnapsToDevicePixels="True">
-                                    <StackPanel IsItemsHost="True" Background="Transparent">
+                                    <StackPanel IsItemsHost="True">
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>

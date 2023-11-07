@@ -7,7 +7,9 @@ using UCH_PR_1.Models;
 using UCH_PR_1.ViewModels.Framework;
 
 namespace UCH_PR_1.ViewModels;
-
+/// <summary>
+/// 
+/// </summary>
 public class MainWindowViewModel : INotifyPropertyChanged
 {
     private readonly DialogManager _dialogManager;
@@ -92,6 +94,24 @@ public class MainWindowViewModel : INotifyPropertyChanged
         ActiveTab = Tabs.FirstOrDefault(t => t.ViewType == ViewType.RegistrationView);
         ActiveTab?.OnViewFullyLoaded();
         LoginButtonText = "Назад";
+    }
+
+    public async void SetTabByUser()
+    {
+        var viewType = User.Roles.FirstOrDefault()?.Role1 switch
+        {
+            "модератор" => ViewType.ModeratorView,
+            "организатор" => ViewType.OrganisatorView,
+            "жюри" => ViewType.JuryView,
+            _ => ViewType.ParticipantView
+        };
+        ActiveTab = Tabs.FirstOrDefault(t => t.ViewType == viewType);
+        if (ActiveTab != null)
+        {
+            ActiveTab.CurrentUser = User;
+            ActiveTab.OnViewFullyLoaded();
+        }
+        LoginButtonText = "Выйти";
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

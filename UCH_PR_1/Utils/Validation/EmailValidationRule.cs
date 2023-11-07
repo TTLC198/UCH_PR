@@ -11,6 +11,6 @@ public class EmailValidationRule : ValidationRule
         var regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
         return regex.IsMatch(value as string ?? string.Empty)
             ? ValidationResult.ValidResult
-            : new ValidationResult(false, "Wrong email address entered.");
+            : new ValidationResult(false, "Неправильный формат электронной почты.");
     }
 }
